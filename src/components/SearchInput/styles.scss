@@ -1,0 +1,25 @@
+.searchInput {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  padding: 0.5em;
+  width: 80%;
+  border-radius: 3px;
+
+  &__icontimes {
+    height: 20px;
+    width: 30px;
+    margin-left: 20px;
+  }
+
+  &__input {
+    border-width: 0px;
+    border: none;
+    width: 80%;
+  }
+
+  &__iconsearch {
+    margin-right: 5px;
+  }
+}

@@ -1,0 +1,29 @@
+@import '../../stylesheets/medias';
+
+.bands {
+  width: 100%;
+  max-width: 1120px;
+
+  @include sm {
+    margin: 1em;
+  }
+
+  ul {
+    display: grid;
+    grid-gap: 2px;
+    list-style: none;
+    grid-template-columns: repeat(1, 1fr);
+
+    @include sm {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include md {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include lg {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
