@@ -4,6 +4,10 @@
   width: 100%;
   max-width: 1120px;
 
+  &__loading {
+    margin-top: 100px;
+  }
+
   @include sm {
     margin: 1em;
   }
@@ -25,5 +29,28 @@
     @include lg {
       grid-template-columns: repeat(3, 1fr);
     }
+  }
+}
+
+.noResults {
+  margin-top: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #c9caca;
+    font-weight: 300;
+  }
+
+  img {
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    max-width: 50%;
   }
 }

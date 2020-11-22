@@ -5,15 +5,14 @@ import api from '../../services/api'
 import MenuBand from '../../components/MenuBand'
 import InfoBand from '../../components/InfoBand'
 
-export default function Band(props) {
+export default function Band({ match }) {
   const [band, setBand] = useState({})
-  const { id } = props.match.params
+  const { id } = match.params
   useEffect(() => {
     api.get(`bands/${id}`).then((response) => {
       console.log(response.data)
       setBand(response.data)
     })
-    // eslint-disable-next-line
   }, [])
 
   return (

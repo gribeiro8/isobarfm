@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react'
+import { FaPlus, FaMinus } from 'react-icons/fa'
 import api from '../../services/api'
-import { FaPlus } from 'react-icons/fa'
 
 import './styles.scss'
 
-export default function InfoBand(props) {
-  const { id, name, genre, biography, image, numPlays } = props.band
+export default function InfoBand({ band }) {
+  const { id, name, genre, biography, image, numPlays } = band
   const [albuns, setAlbuns] = useState({})
 
   useEffect(() => {
     api.get(`albums`).then((response) => {
-      console.log(response.data)
       setAlbuns(response.data)
     })
     // eslint-disable-next-line
@@ -32,10 +31,20 @@ export default function InfoBand(props) {
         </div>
       </div>
       <div className='infoBand__biografy'>
-        <p>{biography}</p>
-        <div class='separator'>
-          <FaPlus color={'#494949'}></FaPlus>
-        </div>
+        <a href='#show' className='show btn' id='show'>
+          <div className=' separator'>
+            <FaPlus color='#494949' />
+          </div>
+        </a>
+        <a href='#hide' className='hide btn' id='hide'>
+          <div className=' separator'>
+            <FaMinus color='#494949' />
+          </div>
+        </a>
+
+        <p className='panel' dangerouslySetInnerHTML={{ __html: biography }} />
+
+        <div className='fade' />
       </div>
 
       <hr />
@@ -49,7 +58,7 @@ export default function InfoBand(props) {
               return album.band === id
             })
             .map((album) => (
-              <img src={album.image} />
+              <img src={album.image} alt='' />
             ))}
         </div>
       </div>

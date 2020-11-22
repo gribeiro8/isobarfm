@@ -1,27 +1,25 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 
+import { BandsContext, useBands } from '../../context/bands'
 import './styles.scss'
 import Menu from '../../components/Menu'
 import Bands from '../../components/Bands'
 import SubMenu from '../../components/SubMenu'
 
 export default function Dashboard() {
-  const [totalResults, setTotalResults] = useState(0)
-  const [orderBy, setOrderBy] = useState(0)
+  const [bandsState, bandsAction] = useBands()
 
   useEffect(() => {
-    console.log(orderBy)
-  }, [orderBy])
+    bandsAction.getBands()
+  }, [])
 
   return (
     <div className='container-dashboard'>
-      <Menu />
-      <SubMenu
-        totalResults={totalResults}
-        orderBy={orderBy}
-        setOrderBy={setOrderBy}
-      />
-      <Bands setTotalResults={setTotalResults} orderBy={orderBy} />
+      <BandsContext.Provider value={{ state: bandsState, action: bandsAction }}>
+        <Menu />
+        <SubMenu />
+        <Bands />
+      </BandsContext.Provider>
     </div>
   )
 }
