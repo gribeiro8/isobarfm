@@ -2,11 +2,11 @@ import React, { useContext } from 'react'
 
 import { BandsContext } from '../../context/bands'
 import noResultsImg from '../../assets/img/no_results.png'
-
-import './styles.scss'
 import CardBand from '../CardBand'
 
-export default function Bands() {
+import './styles.scss'
+
+const Bands = () => {
   const bandsNew = useContext(BandsContext)
 
   return bandsNew.state.totalBands > 0 ? (
@@ -18,9 +18,11 @@ export default function Bands() {
       </ul>
     </div>
   ) : (
-    <div className='noResults'>
+    <div className='no-results'>
       <h1>Sem resultados...</h1>
       <img src={noResultsImg} alt='' />
     </div>
   )
 }
+
+export default Bands

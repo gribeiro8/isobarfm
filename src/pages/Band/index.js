@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react'
 
-import './styles.scss'
-import api from '../../services/api'
 import MenuBand from '../../components/MenuBand'
 import InfoBand from '../../components/InfoBand'
+import api from '../../services/api'
 
-export default function Band({ match }) {
+import './styles.scss'
+
+const Band = ({ match }) => {
   const [band, setBand] = useState({})
   const { id } = match.params
+
   useEffect(() => {
     api.get(`bands/${id}`).then((response) => {
-      console.log(response.data)
       setBand(response.data)
     })
   }, [])
@@ -22,3 +23,4 @@ export default function Band({ match }) {
     </div>
   )
 }
+export default Band

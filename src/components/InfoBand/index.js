@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { FaPlus, FaMinus } from 'react-icons/fa'
+
 import api from '../../services/api'
 
 import './styles.scss'
 
-export default function InfoBand({ band }) {
+const InfoBand = ({ band }) => {
   const { id, name, genre, biography, image, numPlays } = band
   const [albuns, setAlbuns] = useState({})
 
@@ -12,25 +13,24 @@ export default function InfoBand({ band }) {
     api.get(`albums`).then((response) => {
       setAlbuns(response.data)
     })
-    // eslint-disable-next-line
   }, [])
 
   return (
-    <div className='infoBand'>
+    <div className='info-band'>
       <div
-        className='infoBand__header'
+        className='info-band__header'
         style={{ backgroundImage: `url(${image})` }}
       >
-        <div className='infoBand__title'>
+        <div className='info-band__title'>
           <h1>{name}</h1>
         </div>
-        <div className='infoBand__detals'>
+        <div className='info-band__detals'>
           <p>{genre}</p>
           <img src={image} alt='' />
           <p>{numPlays} PLAYS</p>
         </div>
       </div>
-      <div className='infoBand__biografy'>
+      <div className='info-band__biografy'>
         <a href='#show' className='show btn' id='show'>
           <div className=' separator'>
             <FaPlus color='#494949' />
@@ -49,9 +49,9 @@ export default function InfoBand({ band }) {
 
       <hr />
 
-      <div className='infoBand__albuns'>
+      <div className='info-band__albuns'>
         <h3>ALBUNS</h3>
-        <div className='infoBand__albunsImgs'>
+        <div className='info-band__albunsImgs'>
           {[]
             .concat(albuns)
             .filter((album) => {
@@ -65,3 +65,5 @@ export default function InfoBand({ band }) {
     </div>
   )
 }
+
+export default InfoBand

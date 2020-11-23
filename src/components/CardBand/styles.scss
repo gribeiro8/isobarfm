@@ -1,4 +1,4 @@
-.carddragons {
+.card-bands {
   background: #fff;
   padding: 24px;
   transition: 0.5s;
@@ -7,7 +7,7 @@
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   }
 
-  .cardheader {
+  .card-header {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -24,6 +24,7 @@
     &__name {
       margin-top: 20px;
       font-weight: 500;
+      text-transform: uppercase;
     }
 
     &__plays {

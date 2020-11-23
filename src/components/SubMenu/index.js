@@ -1,17 +1,21 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useCallback } from 'react'
 
-import './styles.scss'
 import arrows from '../../assets/img/order_by.png'
 import { BandsContext } from '../../context/bands'
 
-export default function SubMenu() {
+import './styles.scss'
+
+const SubMenu = () => {
   const bandsNew = useContext(BandsContext)
   const [orderBy, setOrderBy] = useState(0)
 
-  function clickOrder(id) {
-    bandsNew.action.orderBandsByName(id)
-    setOrderBy(id)
-  }
+  const clickOrder = useCallback(
+    (id) => {
+      bandsNew.action.orderBandsByName(id)
+      setOrderBy(id)
+    },
+    [bandsNew]
+  )
 
   const DropDownItem = ({ id, text }) => (
     <button
@@ -45,3 +49,4 @@ export default function SubMenu() {
     </div>
   ) : null
 }
+export default SubMenu

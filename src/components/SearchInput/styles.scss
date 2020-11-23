@@ -1,4 +1,4 @@
-.searchInput {
+.search-input {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -7,7 +7,7 @@
   width: 80%;
   border-radius: 3px;
 
-  &__icontimes {
+  &__icon-times {
     height: 20px;
     width: 30px;
     margin-left: 20px;
@@ -19,7 +19,7 @@
     width: 80%;
   }
 
-  &__iconsearch {
+  &__icon-search {
     margin-right: 5px;
   }
 }

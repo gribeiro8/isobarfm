@@ -1,50 +1,47 @@
-import React, { useState, useContext } from 'react'
-
-import './styles.scss'
+import React, { useState, useContext, useCallback } from 'react'
 import { FaTimes, FaSearch } from 'react-icons/fa'
-import { BandsContext } from '../../context/bands'
 
-export default function SearchInput() {
+import { BandsContext } from '../../context/bands'
+import './styles.scss'
+
+const searchInput = () => {
   const [search, setSearch] = useState('')
   const [showIconX, setShowIconX] = useState(false)
   const bandsNew = useContext(BandsContext)
 
-  function resetInput() {
+  const resetInput = useCallback(() => {
     setSearch('')
     setShowIconX(false)
     bandsNew.action.filterName('')
-  }
+  }, [bandsNew])
 
-  const handleChangeSearch = (e) => {
-    if (e.target.value !== '') {
-      setShowIconX(true)
-    } else {
-      setShowIconX(false)
-    }
-    setSearch(e.target.value)
-  }
+  const handleChangeSearch = useCallback((e) => {
+    const { value } = e.target || {}
+    const shouldShowXIcon = value !== ''
+    setShowIconX(shouldShowXIcon)
+    setSearch(value)
+  }, [])
 
-  function submitInput() {
-    bandsNew.action.filterName(search)
-  }
+  const submitInput = useCallback(() => bandsNew.action.filterName(search), [])
 
-  const IconX = () => <FaTimes color='#e1e1e1' size={20} onClick={resetInput} />
+  const iconX = <FaTimes color='#e1e1e1' size={20} onClick={resetInput} />
 
   return (
-    <div className='searchInput'>
-      <div className='searchInput__icontimes'>{showIconX && <IconX />}</div>
+    <div className='search-input'>
+      {showIconX && <div className='search-input__icon-times'>{iconX}</div>}
       <input
         type='text'
-        className='searchInput__input'
+        className='search-input__input'
         onChange={handleChangeSearch}
         value={search}
       />
       <FaSearch
         color='#393939'
         size={20}
-        className='searchInput__iconsearch'
+        className='search-input__icon-search'
         onClick={submitInput}
       />
     </div>
   )
 }
+export default searchInput

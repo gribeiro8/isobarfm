@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react'
 
 import { BandsContext, useBands } from '../../context/bands'
-import './styles.scss'
 import Menu from '../../components/Menu'
 import Bands from '../../components/Bands'
 import SubMenu from '../../components/SubMenu'
+
+import './styles.scss'
 
 export default function Dashboard() {
   const [bandsState, bandsAction] = useBands()
